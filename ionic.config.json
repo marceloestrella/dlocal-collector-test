@@ -1,5 +1,7 @@
 {
   "name": "IpaTest",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

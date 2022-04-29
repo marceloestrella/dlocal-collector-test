@@ -7,6 +7,24 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  public UUIDDLocal: string;
+  constructor() {
+    this.refreshUUID();
+  }
+
+  refreshUUID(){
+    this.UUIDDLocal = localStorage.getItem('SESSIONDLOCALID');
+  }
+
+  async refreshAndCallCollector(){
+    await this.callDlocalCollector();
+    this.refreshUUID();
+  }
+
+  async callDlocalCollector(){
+    const DLCollector = (<any>window).plugins.DLCollector;
+    const sessionId = await DLCollector.getSessionId();
+    localStorage.setItem('SESSIONDLOCALID', sessionId);
+  }
 
 }
